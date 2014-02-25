@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.e175.klaus</groupId>
     <artifactId>config</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7-SNAPSHOT</version>
     <name>config</name>
     <description>A thin wrapper for more convenient handling of configuration in Java Property files, reading defaults
         and overrides from multiple locations on the classpath or filesystem.
@@ -74,7 +74,7 @@
         <connection>scm:git:git@github.com:KlausBrunner/config.git</connection>
         <url>scm:git:git@github.com:KlausBrunner/config.git</url>
         <developerConnection>scm:git:git@github.com:KlausBrunner/config.git</developerConnection>
-        <tag>config-1.0.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
 </project>
