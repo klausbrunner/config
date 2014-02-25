@@ -8,11 +8,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Properties;
 
 /**
  * An implementation of {@link Config} based on Java Property files encoded
@@ -33,17 +30,17 @@ public final class PropertiesConfig implements Config {
             throw new IllegalArgumentException("locations must not be null");
         }
 
-        locationProperties = new LinkedHashMap<>(locations.size());
-        load(locations);
+        locationProperties = Collections.unmodifiableMap(load(locations));
         creationTimeMillis = System.currentTimeMillis();
     }
 
-    private void load(final List<Location> locations) {
+    private Map<Location, Properties> load(final List<Location> locations) {
+        Map<Location, Properties> locProp = new LinkedHashMap<>(locations.size());
         boolean success = false;
         for (final Location loc : locations) {
             try {
                 Properties loaded = loc.load();
-                locationProperties.put(loc, loaded);
+                locProp.put(loc, loaded);
                 success = true;
                 LOG.debug("loaded config from {}", loc);
             } catch (IOException ex) {
@@ -54,10 +51,8 @@ public final class PropertiesConfig implements Config {
         if (!success) {
             throw new IllegalStateException("unable to load configuration data from any location (" + locations + ")");
         }
-    }
 
-    public Map<Location, Properties> getLocationProperties() {
-        return locationProperties;
+        return locProp;
     }
 
     @Override
