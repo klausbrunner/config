@@ -23,9 +23,9 @@ Config config = defaultFromClassloader("myapp.properties")
 		.load();
 ```
 
-The load() method will only throw an exception if it cannot load properties from //any// of the given locations. The config object is immutable: once built, it will not change. If you want to reload properties, you need to explicitly create a new object with the PropertiesConfigBuilder.
+The load() method will only throw an exception if it cannot load properties from any of the given locations. The config object is immutable: once built, it will not change. If you want to reload properties, you need to explicitly create a new object with the PropertiesConfigBuilder.
 
-The ConfigValue object returned from Config.key() is //never// null. You can use it to explicitly check if a value was found at all:
+The ConfigValue object returned from Config.key() is never null. You can use it to explicitly check if a value was found at all:
 
 ```java
 
